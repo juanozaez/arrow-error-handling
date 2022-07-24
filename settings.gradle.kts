@@ -1,0 +1,1 @@
+rootProject.name = "com.homelab.arrow-error-handling"
