@@ -1,27 +1,24 @@
 package com.homelab
 
-import io.ktor.server.routing.*
-import io.ktor.http.*
-import io.ktor.serialization.kotlinx.json.*
-import io.ktor.server.plugins.contentnegotiation.*
-import io.ktor.server.application.*
-import io.ktor.server.response.*
-import io.ktor.server.request.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
-import kotlin.test.*
-import io.ktor.server.testing.*
-import com.homelab.plugins.*
+import com.homelab.plugins.configureRouting
+import io.ktor.client.request.get
+import io.ktor.client.statement.bodyAsText
+import io.ktor.http.HttpStatusCode
+import io.ktor.server.testing.testApplication
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class ApplicationTest {
+
     @Test
-    fun testRoot() = testApplication {
+    fun `returns user by id`() = testApplication {
         application {
             configureRouting()
         }
-        client.get("/").apply {
+
+        client.get("/users/2").apply {
             assertEquals(HttpStatusCode.OK, status)
-            assertEquals("Hello World!", bodyAsText())
+            assertEquals("""User(id=1, name=Paco, surname=Porras)""", bodyAsText())
         }
     }
 }
