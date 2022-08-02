@@ -1,7 +1,7 @@
 package com.homelab.user.domain.find
 
-import com.homelab.user.domain.User
+import com.homelab.user.domain.UserRepository
 
-class UserFinder {
-    fun find(id: String) = User("1", "Paco", "Porras")
+class UserFinder(private val repository: UserRepository) {
+    fun find(id: String) = repository.find(id)
 }

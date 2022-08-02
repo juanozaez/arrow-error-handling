@@ -1,4 +1,4 @@
-package com.homelab.user.adapter
+package com.homelab.user.input
 
 import com.homelab.user.domain.find.UserFinder
 import io.ktor.http.HttpStatusCode
